@@ -7,6 +7,7 @@ let cardsList = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-
  "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"],
 
     deck = $( ".deck" );
+    wait = 450
 
 // *   - add each card's HTML to the page
 function startGame() {
@@ -43,12 +44,43 @@ function shuffle(array) {
 
 
  // set up the event listener for a card. If a card is clicked:
+let openCards = [];
+
 let addCardListener = function () {
+     // openCards = [];
+     $( ".card" ).on("click", function(){
 
-     $(".card").on("click", function(){
+     //if ($(this).hasClass('show') || $(this).hasClass('match')) { return true; }
+// *  - display the card's symbol (put this functionality in another function that you call from this one)
+     let card = $(this).html();
      $(this).addClass("open show");
+ // *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+     openCards.push(card);
 
- });
+     if (openCards.length > 1) {
+         if (card === openCards[0]) {
+           $( ".open" ).addClass("match");
+           setTimeout(function () {
+              $( ".open" ).removeClass("open show");
+          }, wait);
+          openCards = [];
+
+       } else {
+         $( ".open" ).addClass("notmatch");
+         setTimeout(function () {
+             $( ".open" ).removeClass("open show");
+         }, wait);
+         openCards = [];
+
+
+
+     }
+
+
+
+ }
+ // *  - if the list already has another card, check to see if the two cards match
+});
 }
 
 startGame()
