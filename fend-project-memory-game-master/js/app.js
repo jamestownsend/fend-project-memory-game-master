@@ -16,6 +16,8 @@ function startGame() {
     deck.empty();
     match = 0;
     moves = 0;
+    count = 0;
+    rating(moves);
     $( ".moves" ).text(moves);
     startTime();
 
@@ -71,10 +73,10 @@ function startTime() {
 
 // Restarts the game on click.
 $( ".restart" ).on("click", function(){
+  $( ".fa-star-o" ).removeClass("fa-star-o").addClass("fa-star");
   startGame();
-  count = 0
-  $( ".time ").text(count);
   clearInterval(time);
+  $( ".time ").text(count);
 });
 
 
@@ -114,9 +116,11 @@ let addCardListener = function () {
      $( ".moves" ).text(moves);
 
  }
-// *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+// *    + if all cards haveca matched, display a message with the final score (put this functionality in another function that you call from this one)
     if (cardsTotal === match) {
-      $('#winnerModal').modal('toggle')
+      $('#completed-modal').modal('toggle')
+      $('.completed-text').text(`Congratulations you completed the game with ${moves} moves in ${count} seconds.
+      Press the restart icon to play again`);
     }
 
  });

@@ -114,3 +114,6 @@ h1 {
     float: right;
     cursor: pointer;
 }
+.completed-text {
+    margin-left: 16px;
+}
