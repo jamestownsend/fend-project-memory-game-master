@@ -46,6 +46,7 @@ function shuffle(array) {
 }
 
 // Determines score of player.
+// increment the move counter and display it on the page
 function rating(moves) {
     let rating = 3;
     if (moves > 10 && moves < 15) {
@@ -68,7 +69,7 @@ function startTime() {
 }
 
 
-// restarts the game on click.
+// Restarts the game on click.
 $( ".restart" ).on("click", function(){
   startGame();
   count = 0
@@ -77,32 +78,33 @@ $( ".restart" ).on("click", function(){
 });
 
 
-// set up the event listener for a card. If a card is clicked:
+// Set up the event listener for a card. If a card is clicked:
 let openCards = [];
 
 let addCardListener = function () {
+
      $( ".card" ).on("click", function(){
-// display the card's symbol (put this functionality in another function that you call from this one)
+// display the card's symbol
      let card = $(this).html();
-     $(this).addClass("open show");
-// add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+     $(this).addClass("open showc");
+// add the card to a *list* of "open" cards
      openCards.push(card);
 
 // if the list already has another card, check to see if the two cards match
-// if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+// if the cards do match, lock the cards in the open position
      if (openCards.length > 1) {
         if (card === openCards[0]) {
            $( ".open" ).addClass("match");
            setTimeout(function () {
-              $( ".open" ).removeClass("open show");
+              $( ".open" ).removeClass("open showc");
           }, delay);
           match ++;
 
-// if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+// if the cards do not match, remove the cards from the list and hide the card's symbol
        } else {
          $( ".open" ).addClass("notmatch");
          setTimeout(function () {
-             $( ".open" ).removeClass("open show");
+             $( ".open" ).removeClass("open showc");
          }, delay);
      }
 
@@ -112,8 +114,10 @@ let addCardListener = function () {
      $( ".moves" ).text(moves);
 
  }
-
-   if (cardsTotal === match) {
+// *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+    if (cardsTotal === match) {
+      $('#winnerModal').modal('toggle')
+    }
 
  });
 
@@ -121,10 +125,3 @@ let addCardListener = function () {
 
 
 startGame()
-
-
-
-
- // *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- // *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- // */
