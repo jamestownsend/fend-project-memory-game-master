@@ -48,14 +48,13 @@ function shuffle(array) {
 // Determines score of player.
 function rating(moves) {
     let rating = 3;
-    //if moves less tha
     if (moves > 10 && moves < 15) {
         $('.fa-star').eq(2).removeClass('fa-star').addClass('fa-star-o');
     } else if (moves > 15 && moves < 20) {
         $('.fa-star').eq(1).removeClass('fa-star').addClass('fa-star-o');
     } else if (moves > 20) {
         $('.fa-star').eq(0).removeClass('fa-star').addClass('fa-star-o');
-        rating = 1;
+        rating = 0;
     }
     return rating;
 }
@@ -68,9 +67,13 @@ function startTime() {
     }, 1000);
 }
 
+
 // restarts the game on click.
 $( ".restart" ).on("click", function(){
   startGame();
+  count = 0
+  $( ".time ").text(count);
+  clearInterval(time);
 });
 
 
@@ -110,8 +113,8 @@ let addCardListener = function () {
 
  }
 
- // if cardsTotal === match) {
- //   rating(moves)
+   if (cardsTotal === match) {
+
  });
 
 }
