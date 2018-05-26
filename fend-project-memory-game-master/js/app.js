@@ -17,6 +17,7 @@ function startGame() {
     match = 0;
     moves = 0;
     $( ".moves" ).text(moves);
+    startTime();
 
 // shuffle the list of cards using the provided "shuffle" method below
     let shuffleCards = shuffle(cardsList);
@@ -55,7 +56,15 @@ function rating(moves) {
         $('.fa-star').eq(1).removeClass('fa-star').addClass('fa-star-o');
         rating = 1;
     }
-    return { score: rating };
+    return rating;
+}
+
+// Timer functionality
+function startTime() {
+    time = setInterval (function () {
+        count ++;
+        $(" .time ").text(count);
+    }, 1000);
 }
 
 // restarts the game on click.
