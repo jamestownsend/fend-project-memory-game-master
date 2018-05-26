@@ -86,11 +86,15 @@ let openCards = [];
 let addCardListener = function () {
 
      $( ".card" ).on("click", function(){
+
+    if (!$(this).hasClass( "open showc" )) {
 // display the card's symbol
      let card = $(this).html();
+
      $(this).addClass("open showc");
 // add the card to a *list* of "open" cards
      openCards.push(card);
+
 
 // if the list already has another card, check to see if the two cards match
 // if the cards do match, lock the cards in the open position
@@ -108,7 +112,7 @@ let addCardListener = function () {
          setTimeout(function () {
              $( ".open" ).removeClass("open showc");
          }, delay);
-     }
+       }
 
      openCards = [];
      moves ++;
@@ -116,13 +120,12 @@ let addCardListener = function () {
      $( ".moves" ).text(moves);
 
  }
-// *    + if all cards haveca matched, display a message with the final score (put this functionality in another function that you call from this one)
+// *    + if all cards have matched, display a message with the final score
     if (cardsTotal === match) {
       $('#completed-modal').modal('toggle')
-      $('.completed-text').text(`Congratulations you completed the game with ${moves} moves in ${count} seconds.
-      Press the restart icon to play again`);
+      $('.completed-text').text("Congratulations you completed the game with ${moves} moves in ${count} seconds. \n Press the restart icon to play again");
     }
-
+ }
  });
 
 }
