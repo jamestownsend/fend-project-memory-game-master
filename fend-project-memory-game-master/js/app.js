@@ -34,6 +34,13 @@ function startGame() {
     addCardListener()
 }
 
+function startTime() {
+     time = setInterval (function () {
+     count ++;
+     $(" .time ").text(count);
+     }, 1000);
+  }
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -52,31 +59,23 @@ function shuffle(array) {
 // increment the move counter and display it on the page
 function rating(moves) {
     if (moves > 10 && moves < 15) {
+        $('.fa-star').eq(3).removeClass('fa-star').addClass('fa-star-o');
+    } else if (moves > 15 && moves < 20) {
         $('.fa-star').eq(2).removeClass('fa-star').addClass('fa-star-o');
         score = 2;
-    } else if (moves > 15 && moves < 20) {
+    } else if (moves > 20) {
         $('.fa-star').eq(1).removeClass('fa-star').addClass('fa-star-o');
         score = 1;
-    } else if (moves > 20) {
-        $('.fa-star').eq(0).removeClass('fa-star').addClass('fa-star-o');
-        score = 0;
     }
     return score
 }
 
-// Timer functionality
-function startTime() {
-    time = setInterval (function () {
-        count ++;
-        $(" .time ").text(count);
-    }, 1000);
-}
 
 // Restarts the game on click.
 $( ".restart" ).on("click", function(){
   $( ".fa-star-o" ).removeClass("fa-star-o").addClass("fa-star");
+  stopTime(time);
   startGame();
-  clearInterval(time);
   $( ".time ").text(count);
 });
 
@@ -121,12 +120,18 @@ let addCardListener = function () {
  }
 // *    + if all cards have matched, display a message with the final score
     if (cardsTotal === match) {
+      stopTime(time);
       $( "#completed-modal" ).modal('toggle');
       $( ".completed-text" ).text(`You completed the game with a ${score} star rating, in ${moves} moves and in ${count} seconds!`);
     }
  }
  });
 
+}
+
+// Stop Timer
+function stopTime(timer) {
+    clearInterval(timer)
 }
 
 startGame()
