@@ -76,6 +76,8 @@ h1 {
     font-size: 33px;
 }
 
+/*Shake animation taken from: https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+
 .deck .card.match {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
