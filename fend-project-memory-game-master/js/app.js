@@ -17,6 +17,7 @@ function startGame() {
     match = 0;
     moves = 0;
     count = 0;
+    openCards = [];
     rating(moves);
     $( ".moves" ).text(moves);
     startTime();
@@ -70,7 +71,6 @@ function startTime() {
     }, 1000);
 }
 
-
 // Restarts the game on click.
 $( ".restart" ).on("click", function(){
   $( ".fa-star-o" ).removeClass("fa-star-o").addClass("fa-star");
@@ -79,14 +79,13 @@ $( ".restart" ).on("click", function(){
   $( ".time ").text(count);
 });
 
-
 // Set up the event listener for a card. If a card is clicked:
 let openCards = [];
 
 let addCardListener = function () {
 
      $( ".card" ).on("click", function(){
-
+// Stops user clicking on the same card to match
     if (!$(this).hasClass( "open showc" )) {
 // display the card's symbol
      let card = $(this).html();
@@ -94,7 +93,6 @@ let addCardListener = function () {
      $(this).addClass("open showc");
 // add the card to a *list* of "open" cards
      openCards.push(card);
-
 
 // if the list already has another card, check to see if the two cards match
 // if the cards do match, lock the cards in the open position
@@ -123,12 +121,12 @@ let addCardListener = function () {
 // *    + if all cards have matched, display a message with the final score
     if (cardsTotal === match) {
       $('#completed-modal').modal('toggle')
-      $('.completed-text').text("Congratulations you completed the game with ${moves} moves in ${count} seconds. \n Press the restart icon to play again");
+      $('.completed-text').text(`You completed the game with ${moves} moves in ${count} seconds.`);
+      $('.completed-text-2').text("Press the restart icon to play again!");
     }
  }
  });
 
 }
-
 
 startGame()
