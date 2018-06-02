@@ -4,6 +4,7 @@ let cardsList = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-
  "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
  "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"],
 
+// List of global variables
     delay = 500,
     match = 0,
     count = 0,
@@ -39,7 +40,7 @@ function startTime() {
      count ++;
      $(" .time ").text(count);
      }, 1000);
-  }
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -72,7 +73,7 @@ function rating(moves) {
 
 
 // Restarts the game on click.
-$( ".restart" ).on("click", function(){
+$( ".restart" ).on("click", function() {
   $( ".fa-star-o" ).removeClass("fa-star-o").addClass("fa-star");
   stopTime(time);
   startGame();
@@ -89,7 +90,6 @@ let addCardListener = function () {
     if (!$(this).hasClass( "open showc" )) {
 // display the card's symbol
      let card = $(this).html();
-
      $(this).addClass("open showc");
 // add the card to a *list* of "open" cards
      openCards.push(card);
