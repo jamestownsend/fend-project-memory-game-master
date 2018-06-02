@@ -4,16 +4,16 @@ let cardsList = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-
  "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb",
  "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"],
 
-    deck = $( ".deck" ),
     delay = 500,
     match = 0,
     count = 0,
     moves = 0;
+    score = 3;
     cardsTotal = cardsList.length / 2;
 
 // add each card's HTML to the page
 function startGame() {
-    deck.empty();
+    $( ".deck" ).empty();
     match = 0;
     moves = 0;
     count = 0;
@@ -27,7 +27,7 @@ function startGame() {
 
 // loop through each card and create its HTML
     for (var i =0; i < shuffleCards.length; i++) {
-        deck.append($( "<li class=\"card\"><i class=\"" + shuffleCards[i] + "\"></i></li>" ));
+        $( ".deck" ).append($( "<li class=\"card\"><i class=\"" + shuffleCards[i] + "\"></i></li>" ));
     }
 
 // set up the event listener for a card. If a card is clicked:
@@ -51,16 +51,17 @@ function shuffle(array) {
 // Determines score of player.
 // increment the move counter and display it on the page
 function rating(moves) {
-    let rating = 3;
     if (moves > 10 && moves < 15) {
         $('.fa-star').eq(2).removeClass('fa-star').addClass('fa-star-o');
+        score = 2;
     } else if (moves > 15 && moves < 20) {
         $('.fa-star').eq(1).removeClass('fa-star').addClass('fa-star-o');
+        score = 1;
     } else if (moves > 20) {
         $('.fa-star').eq(0).removeClass('fa-star').addClass('fa-star-o');
-        rating = 0;
+        score = 0;
     }
-    return rating;
+    return score
 }
 
 // Timer functionality
@@ -120,9 +121,8 @@ let addCardListener = function () {
  }
 // *    + if all cards have matched, display a message with the final score
     if (cardsTotal === match) {
-      $('#completed-modal').modal('toggle')
-      $('.completed-text').text(`You completed the game with ${moves} moves in ${count} seconds.`);
-      $('.completed-text-2').text("Press the restart icon to play again!");
+      $( "#completed-modal" ).modal('toggle');
+      $( ".completed-text" ).text(`You completed the game with a ${score} star rating, in ${moves} moves and in ${count} seconds!`);
     }
  }
  });
