@@ -73,12 +73,13 @@ function rating(moves) {
 
 
 // Restarts the game on click.
-$( ".restart" ).on("click", function() {
+$( ".restart, #restart" ).on("click", function() {
   $( ".fa-star-o" ).removeClass("fa-star-o").addClass("fa-star");
   stopTime(time);
   startGame();
   $( ".time ").text(count);
 });
+
 
 // Set up the event listener for a card. If a card is clicked:
 let openCards = [];
@@ -122,7 +123,7 @@ let addCardListener = function () {
     if (cardsTotal === match) {
       stopTime(time);
       $( "#completed-modal" ).modal('toggle');
-      $( ".completed-text" ).text(`You completed the game with a ${score} star rating, in ${moves} moves and in ${count} seconds!`);
+      $( ".completed-text" ).text(`You completed the game with a ${score} star rating, in ${moves} moves and in ${count} seconds! Would you like to play again?`);
     }
  }
  });
