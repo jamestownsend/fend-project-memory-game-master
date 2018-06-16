@@ -3,7 +3,7 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Howtoplay](#Howtoplay)
+* [How_to_play](#How_to_play)
 * [Expectations](#Expectations)
 * [Dependencies](#dependencies)
 * [Contributing](#contributing)
@@ -15,7 +15,7 @@ This is a project for Udacity. The memory game allows the player to match cards.
 
 https://github.com/jamestownsend/fend-project-memory-game-master
 
-## How to play
+## How_to_play
 
 The play must select a card to turn it over. Once the player has done this he will need to find the matching card by click on another card. If the player finds the matching card, the player will receive a shaking animation to show that the cards match and the cards will stay open. If the cards do not match then the cards will turn back over. The  player is scored on how few attempts are used to match all the cards. The player is given a star rating to show this. Once the play has matched all the cards, a modal message will display asking if the player would like to play again as well showing his score, time and moves used to complete the game.
 
