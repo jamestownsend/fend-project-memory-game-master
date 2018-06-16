@@ -3,8 +3,8 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [How_to_play](#How_to_play)
-* [Expectations](#Expectations)
+* [How_to_play](#how_to_play)
+* [Expectations](#expectations)
 * [Dependencies](#dependencies)
 * [Contributing](#contributing)
 
